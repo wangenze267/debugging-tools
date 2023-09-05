@@ -1,0 +1,26 @@
+{
+  "name": "debugging-tools",
+  "version": "0.0.1",
+  "description": "develop debugging tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangenze267/debugging-tools.git"
+  },
+  "keywords": [
+    "tools"
+  ],
+  "author": "Ned",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangenze267/debugging-tools/issues"
+  },
+  "homepage": "https://github.com/wangenze267/debugging-tools#readme",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "express": "^4.18.2"
+  }
+}
