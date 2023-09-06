@@ -3,7 +3,7 @@
 
 ## Api
 | 接口名 | 参数名 | 参数类型 |
-| ----- | ----- |
+| ----- | ----- | ----- |
 | /api/getHeader | header | String |
 | /api/getParams | - | - |
 | /api/getBody | - | - |
