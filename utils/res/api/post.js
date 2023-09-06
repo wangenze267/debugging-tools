@@ -3,6 +3,12 @@ function getHeader(req){
   return `${req.headers[header.toLowerCase()]}`
 }
 
+function getBody(req){
+  const data = req.body
+  return data
+}
+
 module.exports =  {
-  getHeader
+  getHeader,
+  getBody
 }

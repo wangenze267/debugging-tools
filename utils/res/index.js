@@ -1,5 +1,6 @@
 const express = require('express')
-const { getHeader } = require('./api/post')
+const { getHeader, getBody } = require('./api/post')
+const { getParams } = require('./api/get')
 const app = express()
 const port = 3000
 let bodyParser = require("body-parser");
@@ -25,8 +26,8 @@ app.use('/api', router)
 app.get('/api', (req, res) => {
   res.send('Hello World!')
 })
+
 app.post('/api/getHeader',(req,res)=>{
-  getHeader(req)
   const header = getHeader(req)
   res.json({
     status:200,
@@ -36,6 +37,29 @@ app.post('/api/getHeader',(req,res)=>{
     }
   })
 })
+
+app.get('/api/getParams',(req,res)=>{
+  const params = getParams(req)
+  res.json({
+    status:200,
+    message:'请求成功',
+    data:{
+      params
+    }
+  })
+})
+
+app.post('/api/getBody',(req,res)=>{
+  const body = getBody(req)
+  res.json({
+    status:200,
+    message:'请求成功',
+    data:{
+      body
+    }
+  })
+})
+
 app.listen(port, () => {
   console.log(`你已经成功启动express服务，端口号为： ${port}`)
 })
