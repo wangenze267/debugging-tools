@@ -1,6 +1,6 @@
 const express = require('express')
 const { getHeader, getBody } = require('./api/post')
-const { getParams } = require('./api/get')
+const { getParams, getTypeData } = require('./api/get')
 const app = express()
 const port = 12345
 let bodyParser = require("body-parser");
@@ -57,6 +57,15 @@ app.post('/api/getBody',(req,res)=>{
     data:{
       body
     }
+  })
+})
+
+app.get('/api/getTypeData',(req,res)=>{
+  const data = getTypeData(req)
+  res.json({
+    status:200,
+    message:'请求成功',
+    data
   })
 })
 
