@@ -7,7 +7,7 @@
 | /api/getHeader | header | String | - |
 | /api/getParams | - | - | - |
 | /api/getBody | - | - | - |
-| /api/getTypeData | type | String | pie,line,table |
+| /api/getTypeData | type | String | pie,line,table,tree |
 
 ## How to Use
 （暂时）本地用node服务启动本项目，请求`localhost:12345/你需要的api`即可

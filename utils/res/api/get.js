@@ -13,6 +13,8 @@ function getTypeData(req) {
     return data.lineData
   }else if(type === 'table'){
     return data.tableData
+  }else if(type === 'tree'){
+    return data.treeData
   }
 }
 
