@@ -1,6 +1,6 @@
 const express = require('express')
 const { getHeader, getBody } = require('./api/post')
-const { getParams, getTypeData } = require('./api/get')
+const { getParams, getTypeData, getFile } = require('./api/get')
 const app = express()
 const port = 12345
 let bodyParser = require("body-parser");
@@ -27,46 +27,56 @@ app.get('/api', (req, res) => {
   res.send('Hello World!')
 })
 
-app.post('/api/getHeader',(req,res)=>{
+app.post('/api/getHeader', (req, res) => {
   const header = getHeader(req)
   res.json({
-    status:200,
-    message:'请求成功',
-    data:{
+    status: 200,
+    message: '请求成功',
+    data: {
       header
     }
   })
 })
 
-app.get('/api/getParams',(req,res)=>{
+app.get('/api/getParams', (req, res) => {
   const params = getParams(req)
   res.json({
-    status:200,
-    message:'请求成功',
-    data:{
+    status: 200,
+    message: '请求成功',
+    data: {
       params
     }
   })
 })
 
-app.post('/api/getBody',(req,res)=>{
+app.post('/api/getBody', (req, res) => {
   const body = getBody(req)
   res.json({
-    status:200,
-    message:'请求成功',
-    data:{
+    status: 200,
+    message: '请求成功',
+    data: {
       body
     }
   })
 })
 
-app.get('/api/getTypeData',(req,res)=>{
+app.get('/api/getTypeData', (req, res) => {
   const data = getTypeData(req)
   res.json({
-    status:200,
-    message:'请求成功',
+    status: 200,
+    message: '请求成功',
     data
   })
+})
+
+app.get('/api/getFile', async (req, res) => {
+  const { data, contentType, file } =await getFile(req)
+  if(contentType){
+    res.setHeader('Content-Type', contentType);
+    res.setHeader('Content-Disposition', `attachment; filename=${file}`);
+  }
+  // console.log(data)
+  res.send(data)
 })
 
 app.listen(port, () => {
