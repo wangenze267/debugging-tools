@@ -1,7 +1,7 @@
 const data = require('../data/index')
-const {files} = require('../data/files/files')
+const { files } = require('../data/files/files')
 
-const fs = require('fs');
+const fs = require('node:fs/promises')
 
 function getParams(req) {
   const data = req.query
@@ -23,10 +23,10 @@ function getTypeData(req) {
 
 async function getFile(req) {
   const { type } = req.query
-  const allowedFileTypes = ['word', 'excel', 'pdf', 'txt'];
+  const allowedFileTypes = ['word', 'excel', 'pdf', 'txt']
 
   if (!allowedFileTypes.includes(type)) {
-    return {data:'类型不存在'}
+    return { data: '类型不存在' }
   }
 
   const contentTypeMap = {
@@ -34,29 +34,22 @@ async function getFile(req) {
     excel: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     pdf: 'application/pdf',
     txt: 'text/plain'
-  };
+  }
 
-  const contentType = contentTypeMap[type];
+  const contentType = contentTypeMap[type]
   const filePath = `./utils/res/data/files/${files[type]}`
 
-  if(type !== 'txt'){
-    return new Promise((resolve,reject)=>{
-      fs.readFile(filePath, (err, data) => {
-        if (err) {
-          return reject({data:'没找到文件'})
-        }
-        return resolve({data, contentType, file:files[type]})
-      })
-    })
-  }else{
-    return new Promise((resolve,reject)=>{
-      fs.readFile(filePath,'utf-8', (err, data) => {
-        if (err) {
-          return reject({data:'没找到文件'})
-        }
-        return resolve({data, contentType, file:files[type]})
-      })
-    })
+  try {
+    const data = await fs.readFile(filePath)
+    return {
+      file: files[type],
+      contentType,
+      data
+    }
+  } catch (error) {
+    return {
+      data: '没找到文件'
+    }
   }
 }
 
