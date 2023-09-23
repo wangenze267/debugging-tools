@@ -92,7 +92,7 @@ app.get('/api/getFile', async (req, res) => {
   res.send(data)
 })
 
-app.post('api/parseExcel', uploadFile.single('file'), (req, res) => {
+app.post('/api/parseExcel', uploadFile.single('file'), (req, res) => {
   const data = getExcelData(req.file.path)
   console.log(req.file)
   res.json({
