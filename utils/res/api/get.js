@@ -23,17 +23,18 @@ function getTypeData(req) {
 
 async function getFile(req) {
   const { type } = req.query
-  const allowedFileTypes = ['word', 'excel', 'pdf', 'txt']
-
-  if (!allowedFileTypes.includes(type)) {
-    return { data: '类型不存在' }
-  }
 
   const contentTypeMap = {
     word: 'application/msword',
     excel: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     pdf: 'application/pdf',
     txt: 'text/plain'
+  }
+
+  const allowedFileTypes = Object.keys(contentTypeMap)
+
+  if (!allowedFileTypes.includes(type)) {
+    return { data: '类型不存在' }
   }
 
   const contentType = contentTypeMap[type]
