@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /started/
+      link: /started/01.简介.html/
     - theme: alt
       text: View on GitHub
       link: https://github.com/wangenze267/debugging-tools

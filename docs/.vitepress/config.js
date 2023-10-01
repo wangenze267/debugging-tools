@@ -1,7 +1,7 @@
 const { getChildren } = require("./utils/autoSidebar");
 const getDirectory = (ele) => getChildren("./docs", ele);
 const nav = [
-    { text: "快速开始", link: "/started/", activeMatch: "/started/"},
+    { text: "开始使用", link: "/started/01.简介.html", activeMatch: "/started/01.简介.html"},
   { text: "Ned", link: "https://www.wangez.site/"},
   {
     text: "GitHub", link: "https://github.com/wangenze267/debugging-tools"},
@@ -15,8 +15,10 @@ nav.forEach(({ text, link }) => {
 });
 
 module.exports = {
+  lang: 'en-US',
   title: "Debugging tools",
-  description: "",
+  titleTemplate: "A convenient interface debugging tool",
+  description: "A convenient interface debugging tool",
   head: [
     ["link", { rel: "icon", type: "image/x-icon", href: "/tool.png" }], // 增加一个自定义的 favicon(网页标签的图标)
   ],
