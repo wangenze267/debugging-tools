@@ -2,6 +2,8 @@
 
 🧰 Develop debugging tools ( 开发调试工具 )
 
+[文档](https://tools.wangez.site/)
+
 ## Api
 
 | 接口名           | 参数名 | 参数类型 | 可选参数            | 请求方式 | 备注 |
