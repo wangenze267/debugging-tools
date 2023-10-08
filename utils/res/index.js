@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 })
 
 const uploadFile = multer({ storage })
-const { getHeader, getBody, getExcelData } = require('./api/post')
+const { getHeader, getBody, getExcelData, getParseYaml } = require('./api/post')
 const { getParams, getTypeData, getFile } = require('./api/get')
 const app = express()
 const port = 12345
@@ -103,6 +103,15 @@ app.post('/api/parseExcel', uploadFile.single('file'), (req, res) => {
     data,
     status: 200,
     message: '上传成功'
+  })
+})
+
+app.post('/api/parseYaml', uploadFile.single('content'), (req, res) => {
+  const data = getParseYaml(req)
+  res.json({
+    data,
+    status: 200,
+    message: '转换成功'
   })
 })
 
