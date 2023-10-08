@@ -1,18 +1,22 @@
+const fs = require('node:fs')
 const express = require('express')
 const multer = require('multer')
 
+const TEMP_PATH = './utils/res/data/store/uploads'
+if (!fs.existsSync(TEMP_PATH)) fs.mkdirSync(TEMP_PATH)
+
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, './utils/res/data/store/uploads')
+    cb(null, TEMP_PATH)
   },
   filename(req, file, cb) {
     const suffix = file.originalname.split('.')[1]
-    cb(null, `xlsx1.${suffix}`)
+    cb(null, `_temp.${suffix}`)
   }
 })
 
 const uploadFile = multer({ storage })
-const { getHeader, getBody, getExcelData } = require('./api/post')
+const { getHeader, getBody, getExcelData, getParseYaml } = require('./api/post')
 const { getParams, getTypeData, getFile } = require('./api/get')
 const app = express()
 const port = 12345
@@ -99,6 +103,15 @@ app.post('/api/parseExcel', uploadFile.single('file'), (req, res) => {
     data,
     status: 200,
     message: '上传成功'
+  })
+})
+
+app.post('/api/parseYaml', uploadFile.single('content'), (req, res) => {
+  const data = getParseYaml(req)
+  res.json({
+    data,
+    status: 200,
+    message: '转换成功'
   })
 })
 

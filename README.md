@@ -6,14 +6,21 @@
 
 ## Api
 
-| 接口名           | 参数名 | 参数类型 | 可选参数            | 请求方式 | 备注 |
-| ---------------- | ------ | -------- | ------------------- | -------- | ---- |
-| /api/getHeader   | header | String   | -                   | post     | -    |
-| /api/getParams   | -      | -        | -                   | get      | -    |
-| /api/getBody     | -      | -        | -                   | post     | -    |
-| /api/getTypeData | type   | String   | pie,line,table,tree | get      | -    |
-| /api/getFile     | type   | String   | txt,word,excel,pdf  | get      | -    |
-| /api/parseExcel  | file   | file     | -                   | post     | -    |
+| 接口名           | 参数名  | 参数类型          | 可选参数               | 请求方式 | 备注 |
+| ---------------- | ------- | ----------------- | ---------------------- | -------- | ---- |
+| /api/getHeader   | -       | -                 | -                      | post     | -    |
+| ~                | header  | `string`          | -                      | -        | -    |
+| /api/getParams   | -       | -                 | -                      | get      | -    |
+| /api/getBody     | -       | -                 | -                      | post     | -    |
+| /api/getTypeData | -       | -                 | -                      | get      | -    |
+| ~                | type    | `string`          | pie, line, table, tree | -        | -    |
+| /api/getFile     | -       | -                 | -                      | get      | -    |
+| ~                | type    | `string`          | txt, word, excel, pdf  | -        | -    |
+| /api/parseExcel  | -       | -                 | -                      | post     | -    |
+| ~                | file    | `file`            | -                      | -        | -    |
+| /api/parseYaml   | -       | -                 | -                      | post     | -    |
+| ~                | content | `file` / `string` | -                      | -        | -    |
+| ~                | to      | `string`          | yaml, json             | -        | -    |
 
 ## How to Use
 
