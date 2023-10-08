@@ -1,13 +1,17 @@
+const fs = require('node:fs')
 const express = require('express')
 const multer = require('multer')
 
+const TEMP_PATH = './utils/res/data/store/uploads'
+if (!fs.existsSync(TEMP_PATH)) fs.mkdirSync(TEMP_PATH)
+
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, './utils/res/data/store/uploads')
+    cb(null, TEMP_PATH)
   },
   filename(req, file, cb) {
     const suffix = file.originalname.split('.')[1]
-    cb(null, `xlsx1.${suffix}`)
+    cb(null, `_temp.${suffix}`)
   }
 })
 
