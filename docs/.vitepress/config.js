@@ -36,7 +36,8 @@ module.exports = {
           items: [
             {text: '通用', link: '/started/apiDocs/01.通用.html'},
             {text: '文件', link: '/started/apiDocs/02.文件.html'},
-            {text: '数据', link: '/started/apiDocs/03.数据.html'}
+            {text: '数据', link: '/started/apiDocs/03.数据.html'},
+            {text: '格式转换', link: '/started/apiDocs/04.格式转换.html'}
           ]
         }
       ],
