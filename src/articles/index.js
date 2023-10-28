@@ -9,8 +9,8 @@ async function getArticles() {
 }
 
 async function getArticleById(req) {
-  const { articleId } = req.query
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${articleId}`)
+  const { postId } = req.query
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
   const data = await res.json()
   return data
 }
@@ -35,9 +35,17 @@ async function getArticlesByUserId(req) {
   return data
 }
 
+async function getCommentsByArticleId(req) {
+  const { postId } = req.query
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+  const data = await res.json()
+  return data
+}
+
 module.exports = {
   getArticles,
   getArticleById,
   addArticle,
-  getArticlesByUserId
+  getArticlesByUserId,
+  getCommentsByArticleId
 }
