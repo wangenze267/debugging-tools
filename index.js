@@ -2,7 +2,7 @@ const fs = require('node:fs')
 const express = require('express')
 const multer = require('multer')
 
-const TEMP_PATH = './src/data/store/uploads'
+const TEMP_PATH = './src/data/uploads'
 if (!fs.existsSync(TEMP_PATH)) fs.mkdirSync(TEMP_PATH)
 
 const storage = multer.diskStorage({
@@ -18,6 +18,7 @@ const storage = multer.diskStorage({
 const uploadFile = multer({ storage })
 const { getHeader, getBody, getExcelData, getParseYaml } = require('./src/api/post')
 const { getParams, getTypeData, getFile } = require('./src/api/get')
+const { getArticles } = require('./src/articles')
 const app = express()
 const port = 12345
 let bodyParser = require('body-parser')
@@ -112,6 +113,15 @@ app.post('/api/parseYaml', uploadFile.single('content'), (req, res) => {
     data,
     status: 200,
     message: '转换成功'
+  })
+})
+
+app.get('/api/getPosts', async (req, res) => {
+  const data = await getArticles()
+  res.json({
+    data,
+    status: 200,
+    message: '请求成功'
   })
 })
 
