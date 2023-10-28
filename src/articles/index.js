@@ -8,7 +8,14 @@ async function getArticles() {
   return data
 }
 
+async function getArticleById(req) {
+  const { articleId } = req.query
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${articleId}`)
+  const data = await res.json()
+  return data
+}
 
 module.exports = {
   getArticles,
+  getArticleById
 }
