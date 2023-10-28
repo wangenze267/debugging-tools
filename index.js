@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 const uploadFile = multer({ storage })
 const { getHeader, getBody, getExcelData, getParseYaml } = require('./src/api/post')
 const { getParams, getTypeData, getFile } = require('./src/api/get')
-const { getArticles, getArticleById, addArticle } = require('./src/articles')
+const { getArticles, getArticleById, addArticle, getArticlesByUserId } = require('./src/articles')
 const app = express()
 const port = 12345
 let bodyParser = require('body-parser')
@@ -126,6 +126,15 @@ app.get('/api/getPosts', async (req, res) => {
 
 app.get('/api/getPostById', async (req, res) => {
   const data = await getArticleById(req)
+  res.json({
+    data,
+    status: 200,
+    message: '请求成功'
+  })
+})
+
+app.get('/api/getPostsByUserId', async (req, res) => {
+  const data = await getArticlesByUserId(req)
   res.json({
     data,
     status: 200,
