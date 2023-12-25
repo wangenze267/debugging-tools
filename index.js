@@ -20,6 +20,7 @@ const { getHeader, getBody, getExcelData, getParseYaml } = require('./src/api/po
 const { getParams, getTypeData, getFile } = require('./src/api/get')
 const { getArticles, getArticleById, addArticle, getArticlesByUserId, getCommentsByArticleId } = require('./src/articles')
 const { getAllComments, getAllCommentsByArticleId } = require('./src/comments')
+const { receptionDemo } = require('./src/reception')
 
 const app = express()
 const port = 12345
@@ -172,6 +173,15 @@ app.get('/api/getAllComments', async (req, res) => {
 })
 app.get('/api/getAllCommentsByPostId', async (req, res) => {
   const data = await getAllCommentsByArticleId(req)
+  res.json({
+    data,
+    status: 200,
+    message: '请求成功'
+  })
+})
+
+app.get('/reception/monitor', async (req,res) => {
+  const data = await receptionDemo(req)
   res.json({
     data,
     status: 200,
